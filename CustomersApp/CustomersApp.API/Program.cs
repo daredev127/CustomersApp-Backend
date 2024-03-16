@@ -1,4 +1,5 @@
 using CustomersApp.API.Configurations;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,9 @@ builder.Services.AddApplicationSetup();
 
 // Persistence setup
 builder.Services.AddPersistenceSetup();
+
+// Logging setup
+builder.Host.UseLoggingSetup(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -24,6 +28,8 @@ if (app.Environment.IsDevelopment())
 
 // Exception handling
 app.SetupErrorHandling();
+
+app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
