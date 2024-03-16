@@ -26,5 +26,14 @@ namespace CustomersApp.Infrastructure.Persistence
                 }
             }
         }
+
+        public Customer AddCustomer(Customer customer)
+        {
+            customer.Id = Guid.NewGuid();
+            customer.CreatedDate = DateTime.UtcNow;
+            customers.Add(customer);
+
+            return customer;
+        }
     }
 }
