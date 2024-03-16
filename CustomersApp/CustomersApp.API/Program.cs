@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Application layer setup
 builder.Services.AddApplicationSetup();
 
+// Persistence setup
+builder.Services.AddPersistenceSetup();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
