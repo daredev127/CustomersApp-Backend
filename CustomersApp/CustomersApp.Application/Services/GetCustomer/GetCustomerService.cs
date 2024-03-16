@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CustomersApp.Application.DTOs;
+using CustomersApp.Domain.Errors;
 using CustomersApp.Domain.Repositories;
 
 namespace CustomersApp.Application.Services.GetCustomer
@@ -18,6 +19,10 @@ namespace CustomersApp.Application.Services.GetCustomer
         public async Task<CustomerDetailsDto> GetCustomerById(Guid id)
         {
             var customer = await _customerRepository.GetCustomerById(id);
+            if (customer == null)
+            {
+                throw new Exception(ErrorMessages.CustomerNotFound);
+            }
             return _mapper.Map<CustomerDetailsDto>(customer);
         }
     }
