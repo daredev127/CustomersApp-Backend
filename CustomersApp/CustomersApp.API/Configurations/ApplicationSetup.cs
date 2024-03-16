@@ -1,4 +1,5 @@
 ﻿using CustomersApp.Application.MappingProfiles;
+using CustomersApp.Application.Services.AddCustomer;
 using CustomersApp.Application.Services.GetAllCustomers;
 
 namespace CustomersApp.API.Configurations
@@ -10,6 +11,7 @@ namespace CustomersApp.API.Configurations
             services.AddAutoMapper(typeof(CustomerMappingProfile));
 
             services.AddScoped<IGetAllCustomersService, GetAllCustomersService>();
+            services.AddScoped<IAddCustomerService, AddCustomerService>();
 
             return services;
         }

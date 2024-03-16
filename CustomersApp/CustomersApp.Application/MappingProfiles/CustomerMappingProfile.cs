@@ -9,6 +9,8 @@ namespace CustomersApp.Application.MappingProfiles
         public CustomerMappingProfile()
         {
             CreateMap<Customer, CustomerNameDto>().ReverseMap();
+            CreateMap<Customer, CustomerDetailsDto>().ReverseMap();
+            CreateMap<Customer, AddCustomerRequestDto>().ReverseMap();
         }
     }
 }
