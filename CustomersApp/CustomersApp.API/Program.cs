@@ -1,6 +1,8 @@
 using CustomersApp.API.Configurations;
 using Serilog;
 
+const string LOCALHOST_CORS_POLICY = "Localhost";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Application layer setup
@@ -11,6 +13,9 @@ builder.Services.AddPersistenceSetup();
 
 // Logging setup
 builder.Host.UseLoggingSetup(builder.Configuration);
+
+// CORS setup
+builder.Services.AddCorsSetup(LOCALHOST_CORS_POLICY);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,6 +33,8 @@ if (app.Environment.IsDevelopment())
 
 // Exception handling
 app.SetupErrorHandling();
+
+app.UseCors(LOCALHOST_CORS_POLICY);
 
 app.UseSerilogRequestLogging();
 
